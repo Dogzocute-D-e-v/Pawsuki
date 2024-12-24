@@ -1,0 +1,43 @@
+/* components/Snowflakes.module.css */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+  }
+  
+  .snowflake {
+    position: absolute;
+    top: -10px;
+    background-color: white;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall 10s linear infinite;
+  }
+  
+  .snowflake:nth-child(odd) {
+    animation-duration: 12s;
+  }
+  
+  @keyframes fall {
+    0% {
+      transform: translateX(0) translateY(0);
+    }
+    100% {
+      transform: translateX(var(--x)) translateY(100vh);
+    }
+  }
+  
+  /* Randomize the x positions and animation delays of the snowflakes */
+  .snowflake:nth-child(1) { --x: -50px; }
+  .snowflake:nth-child(2) { --x: 100px; }
+  .snowflake:nth-child(3) { --x: -150px; }
+  .snowflake:nth-child(4) { --x: 200px; }
+  .snowflake:nth-child(5) { --x: -250px; }
+  /* Repeat this pattern or generate more random variations as needed */  

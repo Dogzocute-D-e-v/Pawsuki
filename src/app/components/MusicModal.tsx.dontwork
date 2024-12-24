@@ -1,0 +1,72 @@
+import { useState, useEffect } from 'react';
+import styles from './styles/MusicModal.module.css';  // Import the CSS module
+
+const MusicModal = () => {
+  const [modalOpen, setModalOpen] = useState(true);
+  const [isMusicPaused, setIsMusicPaused] = useState(true);
+
+  // Handle spacebar press to unpause the music
+  useEffect(() => {
+    const handleSpacebarPress = (event: KeyboardEvent) => {
+      if (event.key === ' ' || event.code === 'Space') {
+        // If the modal is open and spacebar is pressed, unpause music and close modal
+        if (modalOpen) {
+          setIsMusicPaused(false);
+          setModalOpen(false);
+        }
+      }
+    };
+
+    // Add the event listener
+    window.addEventListener('keydown', handleSpacebarPress);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener('keydown', handleSpacebarPress);
+    };
+  }, [modalOpen]);
+
+  // Simulating the media player (You can replace this with your actual media player logic)
+  const handlePlayPause = () => {
+    if (isMusicPaused) {
+      // Logic to play the music
+      console.log('Playing music');
+      setIsMusicPaused(false);
+    } else {
+      // Logic to pause the music
+      console.log('Pausing music');
+      setIsMusicPaused(true);
+    }
+  };
+
+  useEffect(() => {
+    // Simulate unpausing music when the modal is closed
+    if (!modalOpen && !isMusicPaused) {
+      handlePlayPause();
+    }
+  }, [modalOpen, isMusicPaused]);
+
+  return (
+    <>
+      {/* Modal */}
+      {modalOpen && (
+        <div className={styles.modal}>
+          <div className={styles['modal-content']}>
+            <p>Press space to unpause the music!</p>
+          </div>
+        </div>
+      )}
+
+      {/* You can replace this with your actual media player */}
+      <audio
+        id="audio-player"
+        controls
+        paused={isMusicPaused}
+        className={styles['audio-player']}
+        src="your-audio-file.mp3" // Replace with your actual media file
+      />
+    </>
+  );
+};
+
+export default MusicModal;

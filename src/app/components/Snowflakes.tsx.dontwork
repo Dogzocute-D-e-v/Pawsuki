@@ -1,0 +1,19 @@
+// components/Snowflakes.tsx
+import React, { useEffect } from 'react';
+import styles from '../styles/Snowflakes.module.css';
+
+const Snowflakes: React.FC = () => {
+  useEffect(() => {
+    // Optionally, you can add any additional logic here if needed in future.
+  }, []);
+
+  return (
+    <div className={styles.snowflakes}>
+      {Array.from({ length: 100 }).map((_, index) => (
+        <div key={index} className={styles.snowflake}></div>
+      ))}
+    </div>
+  );
+};
+
+export default Snowflakes;

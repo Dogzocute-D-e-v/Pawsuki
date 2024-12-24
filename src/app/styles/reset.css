@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #58ffb0;
+  --primary-hover: rgba(88, 255, 176, 0.9);
+  --primary-transparent: rgba(88, 255, 176, 0.1);
+}
+
+/* Navigation Menu */
+.NavigationMenuRoot {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.NavigationMenuList {
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+  list-style: none;
+  gap: 8px;
+}
+
+.NavigationMenuTrigger,
+.NavigationMenuLink {
+  all: unset;
+  padding: 8px 12px;
+  outline: none;
+  user-select: none;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  transition: all 200ms ease;
+}
+
+.NavigationMenuTrigger:hover,
+.NavigationMenuLink:hover {
+  background-color: rgb(39, 39, 42);
+  cursor: pointer;
+}
+
+.NavigationMenuTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.NavigationMenuContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation-duration: 250ms;
+  animation-timing-function: ease;
+}
+
+.NavigationMenuContent[data-motion="from-start"] {
+  animation-name: enterFromLeft;
+}
+
+.NavigationMenuContent[data-motion="from-end"] {
+  animation-name: enterFromRight;
+}
+
+.NavigationMenuContent[data-motion="to-start"] {
+  animation-name: exitToLeft;
+}
+
+.NavigationMenuContent[data-motion="to-end"] {
+  animation-name: exitToRight;
+}
+
+@keyframes enterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exitToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+@keyframes exitToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}
+
+/* Subscription Cards */
+.subscription-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.subscription-card:hover {
+  transform: translateY(-4px);
+}
+
+.subscription-card .icon-wrapper {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.subscription-card:hover .icon-wrapper {
+  background-color: var(--primary-transparent);
+}
+
+/* Buttons */
+.button-primary {
+  background-color: var(--primary);
+  color: black;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.button-outline {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  transition: all 0.2s ease-in-out;
+}
+
+.button-outline:hover {
+  background-color: var(--primary-transparent);
+}
+
+/* Footer Links */
+.footer-link {
+  color: white;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-link:hover {
+  color: var(--primary);
+}
+
+/* Separator */
+.separator {
+  background-color: rgb(39, 39, 42);
+  width: 1px;
+  height: 16px;
+  margin: 0 8px;
+}
+
+/* Logo Text */
+.logo-gradient {
+  background: linear-gradient(to right, var(--primary), rgba(88, 255, 176, 0.6));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card Pricing */
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgb(39, 39, 42);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.price-row:hover {
+  background-color: rgb(39, 39, 42);
+}
+
+/* Popular Badge */
+.popular-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgb(39, 39, 42);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .NavigationMenuContent {
+    width: auto;
+    min-width: 300px;
+  }
+  
+  .price-row {
+    padding: 8px;
+  }
+}
+

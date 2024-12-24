@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Snowflakes */
+@keyframes snowflakes {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.snowflake {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(white, white);
+  /* Workaround for Chromium's selective color inversion */
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px white);
+}
